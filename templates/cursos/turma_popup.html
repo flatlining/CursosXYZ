@@ -1,0 +1,28 @@
+{% extends 'cursos/base_popup.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block content %}
+<h1>{{ curso.nome }}</h1>
+<h2>Turma {{ turma.codigo_turma }}</h2>
+<h3>Informações</h3>
+<p>{{ turma.data_inicio }} - {{ turma.data_fim }}{% if turma.aos_sabados %} (Sábados){% endif %}</p>
+<p>{{ turma.horario_inicio }} as {{ turma.horario_fim }}</p>
+<h3>Local</h3>
+<p>{{ turma.local }}</p>
+<h3>Professores</h3>
+<ul>
+	{% for professor in professores %}
+	<li><a href="{% url CursosXYZ.cursos.views.professor_popup slug=professor.slug %}" class="nyroModal">{{ professor.nome }}</a></li>
+	{% endfor %}
+</ul>
+{% if turma.observacoes %}
+<h3>Observações</h3>
+<p>{{ turma.observacoes }}</p>
+{% endif %}
+{% endblock %}

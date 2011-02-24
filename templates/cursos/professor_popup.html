@@ -1,0 +1,15 @@
+{% extends 'cursos/base_popup.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block content %}
+<h1>{{ professor.nome }}</h1>
+<p>Email: <a href="mailto:{{ professor.email }}">{{ professor.email }}</a></p>
+<h2>Currículo</h2>
+<p>{{ professor.curriculo }}</p>
+{% endblock %}

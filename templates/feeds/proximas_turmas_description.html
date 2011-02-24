@@ -1,0 +1,4 @@
+<p>Data: {{ obj.data_inicio }} a {{ obj.data_fim }}{% if obj.aos_sabados %} (Sábados){% endif %}<br/>
+Horário: {{ obj.horario_inicio }} as {{ obj.horario_fim }}<br/>
+Local: {{ obj.local }}</p>
+<p><a href="{{ obj.get_absolute_url }}">Mais informações</a></p>

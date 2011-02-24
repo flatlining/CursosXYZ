@@ -1,0 +1,23 @@
+{% extends 'cursos/base_content.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block title %}{{ block.super }} | Lista de Cursos{% endblock %}
+
+{% block content %}
+<h2>Cursos</h2>
+{% if cursos %}
+<ul>
+	{% for curso in cursos %}
+	<li><a href="{% url CursosXYZ.cursos.views.curso slug=curso.slug %}">{{ curso.nome }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>Nenhum curso disponível.</p>
+{% endif %}
+{% endblock %}

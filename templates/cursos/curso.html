@@ -1,0 +1,41 @@
+{% extends 'cursos/base_content.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block title %}{{ block.super }} | {{ curso.nome }}{% endblock %}
+
+{% block content %}
+<h2>{{ curso.nome }}</h2>
+{% if categorias %}
+<p>Categorias: {% for cat in categorias %} <spam><a href="{% url CursosXYZ.cursos.views.categoria slug=cat.slug%}">{{ cat.nome }}</a></span> {% endfor %}</p>
+{% endif %}
+{% if curso.publico_alvo %}
+<h3>Público Alvo</h3>
+<p>{{ curso.publico_alvo }}</p>
+{% endif %}
+{% if curso.pre_requisitos %}
+<h3>Pré-requisitos</h3>
+<p>{{ curso.pre_requisitos }}</p>
+{% endif %}
+<h3>Descrição</h3>
+<p>{{ curso.descricao }}</p>
+{% if curso.observacoes %}
+<h3>Observações</h3>
+<p>{{ curso.observacoes }}</p>
+{% endif %}
+<h3>Turmas</h3>
+{% if turmas %}
+<ul>
+	{% for turma in turmas %}
+	<li><a href="{% url CursosXYZ.cursos.views.turma_popup slug=turma.curso.slug turma_id=turma.id %}" class="nyroModal">Turma {{ turma.codigo_turma }}</a> ({{ turma.data_inicio }} a {{ turma.data_fim }}{% if turma.aos_sabados %} (Sábados){% endif %} das {{ turma.horario_inicio }} as {{ turma.horario_fim }})</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>Nenhum turma disponível.</p>
+{% endif %}
+{% endblock %}

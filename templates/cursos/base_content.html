@@ -1,0 +1,59 @@
+{% extends 'cursos/base.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block title %}{{ block.super }}{% endblock %}
+
+{% block head %}
+<link rel="alternate" type="application/rss+xml" title="Próximas Turmas - Cursos XYZ [RSS]" href="/rss/proximas_turmas/" />
+{% endblock %}
+
+{% block banner %}
+Excelência em Cursos de Informática
+{% endblock %}
+
+{% block left %}
+<h2>Menu</h2>
+<ul>
+	<li><a href="{% url CursosXYZ.cursos.views.index %}">Início</a></li>
+	<li>&nbsp</li>
+	<li><a href="{% url CursosXYZ.cursos.views.cursos %}">Cursos</a></li>
+	<li><a href="{% url CursosXYZ.cursos.views.professores %}">Professores</a></li>
+</ul>
+{% endblock %}
+
+{% block right %}
+<h2>Próximas Turmas</h2>
+{% if proximas_turmas %}
+<ul>
+	{% for t in proximas_turmas %}
+	<li><a href="{% url CursosXYZ.cursos.views.turma slug=t.curso.slug turma_id=t.id %}">{{ t.curso.nome }}</a><br />
+	({{ t.data_inicio }}){% if t.aos_sabados %} (Sábados){% endif %}</li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma turma disponível.</p>
+{% endif %}
+<h2>Categorias</h2>
+{% if lista_categorias %}
+<ul>
+	{% for c in lista_categorias %}
+	<li><a href="{% url CursosXYZ.cursos.views.categoria slug=c.slug %}">{{ c.nome }}</a></li>
+	{% endfor %}
+</ul>
+{% else %}
+<p>Nenhuma categoria disponível.</p>
+{% endif %}
+{% endblock %}
+
+{% block content %}
+{% endblock %}
+
+{% block footer %}
+made in django/python <a href="/admin/" style="text-decoration: none">:D</a>
+{% endblock %}

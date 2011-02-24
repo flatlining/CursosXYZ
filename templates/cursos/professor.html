@@ -1,0 +1,17 @@
+{% extends 'cursos/base_content.html' %}
+{% comment %}
+CursosXYZ
+Project for Software Development III class, and my first Django tryout. 
+
+@copyright: 2010 Matias Schertel <mschertel@gmail.com>
+@license: GNU General Public License.
+{% endcomment %}
+
+{% block title %}{{ block.super }} | {{ professor.nome }}{% endblock %}
+
+{% block content %}
+<h2>{{ professor.nome }}</h2>
+<p>Email: <a href="mailto:{{ professor.email }}">{{ professor.email }}</a></p>
+<h3>Currículo</h3>
+<p>{{ professor.curriculo }}</p>
+{% endblock %}
